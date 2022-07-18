@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "learning-react-native-2",
+    "slug": "learning-react-native-2",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

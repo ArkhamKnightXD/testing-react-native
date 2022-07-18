@@ -1,0 +1,6 @@
+Debemos instalar antes expo cli: npm install -g expo-cli
+
+Comando para crear nuevo proyecto expo init AwesomeProject
+
+
+Comando para correr el proyecto npm run android
