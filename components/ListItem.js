@@ -1,7 +1,7 @@
 import {StyleSheet, View, TouchableOpacity, Text} from "react-native";
+import Entypo from "react-native-vector-icons/Entypo";
 //Fallas con los icons
 // import Icon from "react-native-vector-icons/dist/FontAwesome";
-
 
 const styles = StyleSheet.create({
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 });
 
-const ListItem = ({item}) => {
+const ListItem = ({item, deleteItem}) => {
     return (
         //El componente touchable, agrega opacidad a nuestro componente cuando es tocado, este es el elemento
         // que debemos de utilizar cuando queremos agregar un elemento que deba ser tocado, como un boton
@@ -36,7 +36,9 @@ const ListItem = ({item}) => {
             <View style={styles.listItemView}>
                 <Text style={styles.listItemText}>{item.text}</Text>
 
-                {/*<Icon name="remove" size={20} color="firebrick"/>*/}
+                {/*De esta forma utilizo iconos en react native*/}
+                <Entypo onPress={() => deleteItem(item.id)} name="minus" size={24} color="black" />
+
             </View>
         </TouchableOpacity>
     );

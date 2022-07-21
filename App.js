@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import {useState} from 'react';
+import {StyleSheet, View, FlatList, Alert} from 'react-native';
 import Header from "./components/Header";
 import ListItem from "./components/ListItem";
+import AddItem from "./components/AddItem";
 
 export default function App() {
 
@@ -13,6 +14,34 @@ export default function App() {
         {id: 3, text: "Bread" },
         {id: 4, text: "Juice" },
     ]);
+
+
+    //De esta forma borro elementos de un arreglo de estados
+    const deleteItem = (id) => {
+
+        setItems(previousItem => {
+
+            return previousItem.filter(item => item.id !== id);
+        })
+    };
+
+    const addItem = (text) => {
+
+        //Validacion para que no se pueda agregar un articulo con texto vacio
+
+        if (!text){
+
+            //De esta forma envio un mensaje de error en react native
+            Alert.alert("Error", "Please enter an item");
+        }
+        else{
+
+            setItems(previousItem => {
+
+                return[{id: 5, text}, ...previousItem];
+            });
+        }
+    };
 
     //Una de las primera diferencias entre react native y react, es que aqui en el return no puedo utilizar elementos html
   //Debo de utilizar los componentes de react native tales como view y text
@@ -25,9 +54,10 @@ export default function App() {
     <View style={styles.container}>
       <Header title={"Shopping List"}/>
 
+        <AddItem addItem={addItem}/>
         {/*Manejamos la visualizacion de lista de datos mediante flatList, aqui no utilizamos map como en react */}
         <FlatList data={items} renderItem={({item}) => (
-            <ListItem item={item}/>
+            <ListItem item={item} deleteItem={deleteItem}/>
         )}/>
 
       {/*De esta forma utilizo el componente para mostrar imagenes, utilizare el API de random images*/}
