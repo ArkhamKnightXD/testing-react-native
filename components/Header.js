@@ -1,26 +1,14 @@
-import {StyleSheet, Text, View} from "react-native";
+import {Text, View} from "react-native";
+import PropTypes from "prop-types";
+import useStyles from "./useStyles";
 
-const styles = StyleSheet.create({
-
-    header: {
-        height: 60,
-        padding:15,
-        backgroundColor: "#252590"
-    },
-
-    text: {
-
-        color: "#fff",
-        fontSize: 23,
-        textAlign: "center"
-    }
-});
+const {headerStyles} = useStyles();
 
 //Aqui se pueden enviar props normalmente como se harian en react, funciona de la misma forma
 const Header = ({title}) => {
     return (
-        <View style={styles.header}>
-            <Text style={styles.text}>{title}</Text>
+        <View style={headerStyles.header}>
+            <Text style={headerStyles.text}>{title}</Text>
         </View>
     );
 };
@@ -28,6 +16,11 @@ const Header = ({title}) => {
 //De esta forma le doy valores por defecto a mis props en react tambien se puede esto, solo que no lo utilizo
 Header.defaultProps = {
     title: "Shopping List"
+}
+
+Header.propTypes = {
+
+    title: PropTypes.string.isRequired,
 }
 
 export default Header;
